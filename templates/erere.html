@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<title>PEMPEK WONG KITO GALO</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
+<style>
+body, html {height: 100%}
+body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
+.menu {display: none}
+.bgimg {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url_for('static', filename='img/pempek1.jpg');
+  min-height: 90%;
+}
+</style>
+<body background="{{ url_for('static', filename='img/pempek1.jpg') }}">
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top w3-hide-small">
+  <div class="w3-bar w3-xlarge w3-black w3-opacity w3-hover-opacity-off" id="myNavbar">
+    <a href="#" class="w3-bar-item w3-button">HOME</a>
+    <a href="#menu" class="w3-bar-item w3-button">MENU</a>
+    <a href="#about" class="w3-bar-item w3-button">ABOUT</a>
+    <a href="#contact" class="w3-bar-item w3-button">ORDER</a>
+  </div>
+</div>
+
+<!-- Header with image -->
+<header class="bgimg w3-display-container w3-grayscale-min" id="home">
+  <div class="w3-display-bottomleft w3-padding">
+    <span class="w3-tag w3-xxlarge"><marquee>BUKA PADA 10:00 - 23:00</marquee></span>
+  </div>
+  <div class="w3-display-middle w3-center">
+    <span class="w3-text-white w3-hide-small" style="font-size:100px">PEMPEK<br>WONG KITO</span>
+    <p><a href="#menu" class="w3-button w3-xxlarge w3-black">Daftar Menu</a></p>
+  </div>
+</header>
+
+<!-- Menu Container -->
+<div class="w3-container w3-black w3-padding-64 w3-xxlarge" id="menu">
+  <div class="w3-content">
+
+    <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">DAFTAR MENU</h1>
+    {{ harga }}
+    <div class="w3-row w3-center w3-border w3-border-dark-grey">
+      <a href="javascript:void(0)" onclick="openMenu(event, 'Pizza');" id="myLink">
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Aneka Pempek</div>
+      </a>
+      <a href="javascript:void(0)" onclick="openMenu(event, 'Pasta');">
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Minuman</div>
+      </a>
+    </div>
+
+    <div id="Pizza" class="w3-container menu w3-padding-32 w3-white">
+<!--      <h1><b>Pempek Kapal Selam</b> <span class="w3-tag w3-grey w3-round">Popular</span> <span class="w3-right w3-tag w3-dark-grey w3-round">Rp.18.000</span></h1>-->
+<!--      <hr>-->
+      {% for aneka_pempek in pempek %}
+
+      <h1><b>{{ aneka_pempek[1] }}</b> <span class="w3-right w3-tag w3-dark-grey w3-round">Rp. {{ aneka_pempek[2] }}</span></h1>
+      <hr>
+
+      {% endfor %}
+   </div>
+
+    <div id="Pasta" class="w3-container menu w3-padding-32 w3-white">
+      {% for aneka_minuman in minuman %}
+      <h1><b>{{ aneka_minuman[1] }}</b>  <span class="w3-right w3-tag w3-dark-grey w3-round">Rp. {{ aneka_minuman[2] }}</span></h1>
+      <hr>
+
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
+
+<!-- About Container -->
+<div class="w3-container w3-padding-64 w3-red w3-grayscale w3-xlarge" id="about">
+  <div class="w3-content">
+    <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">About</h1>
+    <p>Pempek atau empek-empek adalah makanan khas Palembang yang terbuat dari daging ikan yang digiling lembut dan tepung kanji (secara salah kaprah sering disebut sebagai "tepung sagu"), serta beberapa komposisi lain seperti telur, bawang putih yang dihaluskan, penyedap rasa dan garam. </p>
+    <p><strong>The Chef?</strong> Mr. Dobleh<img src="{{ url_for('static', filename='img/chef.jpg') }}" style="width:150px" class="w3-circle w3-right" alt="Chef"></p>
+    <p>We are proud of our interiors.</p>
+    <img src="{{ url_for('static', filename='img/interior2.jpg') }}" style="width:100%" class="w3-margin-top w3-margin-bottom" alt="Restaurant">
+    <h1><b>Buka</b></h1>
+
+    <div class="w3-row">
+      <div class="w3-col s6">
+        <p>Senin 10:00 - 23:00</p>
+        <p>Selasa 10:00 - 23:00</p>
+        <p>Rabu 10:00 - 23:00</p>
+        <p>Kamis 10:00 - 23:00</p>
+      </div>
+      <div class="w3-col s6">
+        <p>Jum'at 10:00 - 23:00</p>
+        <p>Sabtu 10:00 - 23:00</p>
+        <p>Minggu TUTUP</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Contact -->
+<div class="w3-container w3-padding-64 w3-blue-grey w3-grayscale-min w3-xlarge" id="contact">
+  <div class="w3-content">
+    <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">SILAKAN ORDER</h1>
+    <hr>
+    <p><span class="w3-tag">Menerima Pesanan Hub : 0819 0243 7664 </span> </p>
+   <p><span class="w3-red"> <marquee> NB : Ikan Tenggiri Asli !!</marquee></span> </p>
+    <form action="{{ url_for('order') }}" method="post">
+      <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Nama" required name="nama_pemesan"></p>
+      <p><select class="w3-input w3-padding-16 w3-border" required name="pempek_id">
+        {% for aneka_pempek in pempek %}
+          <option class="w3-input w3-padding-16 w3-border" value="{{aneka_pempek[0] }}">{{ aneka_pempek[1] }} - Rp. {{ aneka_pempek[2] }}</option>
+        {% endfor %}
+      </select>
+      </p>
+
+      <p><select class="w3-input w3-padding-16 w3-border" required name="minuman_id">
+        {% for aneka_minuman in minuman %}
+          <option class="w3-input w3-padding-16 w3-border" value="{{aneka_minuman[0] }}">{{ aneka_minuman[1] }} - Rp. {{ aneka_minuman[2] }}</option>
+        {% endfor %}
+      </select>
+      </p>
+      <p><button href="pesan" class="w3-button w3-light-grey w3-block" type="submit">PESAN</button></p>
+    </form>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-48 w3-xlarge">
+  <p>Powered by <a> "PEMPEK WONG KITO GALO" </a> </p>
+</footer>
+
+<script>
+// Tabbed Menu
+function openMenu(evt, menuName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("menu");
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+     tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+  }
+  document.getElementById(menuName).style.display = "block";
+  evt.currentTarget.firstElementChild.className += " w3-red";
+}
+document.getElementById("myLink").click();
+</script>
+
+</body>
+</html>
